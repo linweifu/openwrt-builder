@@ -9,6 +9,7 @@ RUN apt-get -qq update;\
     useradd -m openwrt &&\
     echo 'openwrt ALL=NOPASSWD: ALL' > /etc/sudoers.d/openwrt &&\
     sudo -iu openwrt git clone --depth 1 --branch "${OPENWRT_VERSION}" "${OPENWRT_URL}" &&\
+    sudo -iu openwrt git config --global http.postBuffer 524288000 &&\
     sudo -iu openwrt openwrt/scripts/feeds update 
 
 VOLUME /home/openwrt
