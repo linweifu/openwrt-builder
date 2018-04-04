@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
-ENV OPENWRT_VERSION chaos_calmer
-ENV OPENWRT_URL https://git.openwrt.org/openwrt/svn-archive/openwrt.git
+ENV OPENWRT_VERSION master
+ENV OPENWRT_URL https://git.openwrt.org/openwrt/openwrt.git
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update;\
     apt-get install -yqq ccache subversion wget libssl-dev build-essential libncurses5-dev zlib1g-dev gawk gcc-multilib flex git-core gettext unzip python2.7 sudo &&\
@@ -9,7 +9,7 @@ RUN apt-get -qq update;\
     useradd -m openwrt &&\
     echo 'openwrt ALL=NOPASSWD: ALL' > /etc/sudoers.d/openwrt &&\
     sudo -iu openwrt git clone --depth 1 --branch "${OPENWRT_VERSION}" "${OPENWRT_URL}" &&\
-    sudo -iu openwrt git config –global http.postBuffer 524288000 &&\
+    sudo -iu openwrt git config --global http.postBuffer 524288000 &&\
     sudo -iu openwrt openwrt/scripts/feeds update 
 
 VOLUME /home/openwrt
