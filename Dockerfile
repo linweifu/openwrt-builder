@@ -14,4 +14,4 @@ RUN apt-get -qq update;\
 VOLUME /home/openwrt
 USER openwrt
 WORKDIR /home/openwrt/openwrt
-CMD sudo -iu openwrt bash
+CMD bash
